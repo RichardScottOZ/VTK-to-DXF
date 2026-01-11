@@ -29,12 +29,7 @@ def convert_stl_to_dxf(input_path, output_path=None):
     Returns:
         bool: True if conversion was successful, False otherwise
     """
-    try:
-        import pymeshlab
-    except ImportError:
-        print("Error: pymeshlab is not installed. Please install it using:")
-        print("    pip install pymeshlab")
-        sys.exit(1)
+    import pymeshlab
     
     try:
         ms = pymeshlab.MeshSet()
@@ -157,6 +152,16 @@ Examples:
     )
     
     args = parser.parse_args()
+    
+    # Check for pymeshlab after parsing args so --help works without the library
+    try:
+        import pymeshlab
+    except ImportError:
+        print("Error: pymeshlab is not installed. Please install it using:")
+        print("    pip install pymeshlab")
+        print("\nOr install all dependencies:")
+        print("    pip install -r requirements.txt")
+        sys.exit(1)
     
     # Validate input path
     input_path = Path(args.input)

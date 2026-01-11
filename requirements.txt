@@ -1,3 +1,6 @@
+# Required for vtk_to_dxf.py script
 pymeshlab>=2022.2.post2
+
+# Optional - used in the Jupyter notebook for VTK file reading
 pyvista>=0.37.0
 PVGeo>=2.0.0
