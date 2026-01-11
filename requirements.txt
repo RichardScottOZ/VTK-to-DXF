@@ -1,0 +1,3 @@
+pymeshlab>=2022.2.post2
+pyvista>=0.37.0
+PVGeo>=2.0.0
