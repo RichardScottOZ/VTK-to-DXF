@@ -153,7 +153,14 @@ Examples:
     
     args = parser.parse_args()
     
-    # Check for pymeshlab after parsing args so --help works without the library
+    # Validate input path first (before checking dependencies)
+    input_path = Path(args.input)
+    
+    if not input_path.exists():
+        print(f"Error: Input path '{args.input}' does not exist")
+        sys.exit(1)
+    
+    # Check for pymeshlab after validating input
     try:
         import pymeshlab
     except ImportError:
@@ -161,13 +168,6 @@ Examples:
         print("    pip install pymeshlab")
         print("\nOr install all dependencies:")
         print("    pip install -r requirements.txt")
-        sys.exit(1)
-    
-    # Validate input path
-    input_path = Path(args.input)
-    
-    if not input_path.exists():
-        print(f"Error: Input path '{args.input}' does not exist")
         sys.exit(1)
     
     # Process based on whether input is a file or directory
